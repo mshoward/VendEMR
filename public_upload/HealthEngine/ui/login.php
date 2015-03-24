@@ -1,5 +1,5 @@
 <?php
-	require_once "./webroot/HealthEngine/lib/global_includes.php";
+	require_once "./webroot/HealthEngine/lib/HE_global_includes.php";
 	
 	$login_page = <<<LOGIN_PAGE
 <!DOCTYPE html>
