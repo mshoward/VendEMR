@@ -1,0 +1,5 @@
+NameVirtualHost *:80
+<VirtualHost *:80>
+    Include /jumpbox/etc/apache2/jumpbox-common
+    Include /jumpbox/etc/apache2/jumpbox-app
+</VirtualHost>
