@@ -23,7 +23,6 @@
 			if ($this->log_level >= $lvl)
 			{
 				echo $str;
-				logme($lvl, $str); 
 			}
 		}
 		//error supression
@@ -31,6 +30,7 @@
 		{
 			if ($this->log_level >= $lvl)
 			{
+				$this->shout($lvl, $str);
 				$fh = @fopen($this->log_path, 'a');
 				if ((!$fh) || !fwrite($fh, $str . "\n"))
 				{
