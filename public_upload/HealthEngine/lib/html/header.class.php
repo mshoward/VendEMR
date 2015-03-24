@@ -8,8 +8,16 @@
 				alt="HealthEngine Red Cross"
 				style="width:25px; height:25px;">
 		</div>
-		<div class='col-md-4'>
+		<div class='col-md-3'>
 			<h1>HealthEngine</h1>
+		</div>
+		<div class='col-md-1'>
+			<h5>Tools</h5>
+		</div>
+		<div class='col-md-6'>
+			<div class='well'>
+				<p class='lead'>Search Bar in progress...</p>
+			</div>
 		</div>
 		
 	</div>
