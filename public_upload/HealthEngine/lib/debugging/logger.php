@@ -1,5 +1,5 @@
 <?php
-	require_once "webroot/HealthEngine/lib/HE_globals.php";
+	require_once "./webroot/HealthEngine/lib/HE_globals.php";
 	
 	class logger
 	{

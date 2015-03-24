@@ -1,5 +1,5 @@
 <?php
-	require_once "webroot/HealthEngine/lib/auth/auth_includes.php";
+	require_once "./webroot/HealthEngine/lib/auth/auth_includes.php";
 	$llogger = & $GLOBALS["HE_LOGGER"];
 	$llogger->logme(3, "login_redirect.php hit.");
 	

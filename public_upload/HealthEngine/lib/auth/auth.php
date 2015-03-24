@@ -1,6 +1,6 @@
 <?php
-	require_once "webroot/lib/HE_globals.php";
-	require_once "webroot/lib/HE_global_includes.php";
+	require_once "./webroot/lib/HE_globals.php";
+	require_once "./webroot/lib/HE_global_includes.php";
 	$llogger = & $GLOBALS["HE_LOGGER"];
 
 	$llogger->logme(3, "including access_auth.php");
