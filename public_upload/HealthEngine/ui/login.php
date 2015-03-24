@@ -1,4 +1,5 @@
 <?php
+	echo "hi";
 	require_once "./webroot/HealthEngine/lib/HE_global_includes.php";
 	
 	$login_page = <<<LOGIN_PAGE
