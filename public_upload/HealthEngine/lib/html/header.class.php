@@ -8,7 +8,7 @@
 <div class='well well-lg'>
 	<div class='row'>
 		<div class='col-md-2'>
-			<img src="./webroot/HealthEngine/ui/res/red_cross.png"
+			<img src="/var/data/public/HealthEngine/ui/res/red_cross.png"
 				alt="HealthEngine Red Cross"
 				style="width:25px; height:25px;">
 		</div>

@@ -1,10 +1,10 @@
 <?php
-	require_once "./webroot/HealthEngine/lib/HE_globals.php";
+	require_once "/var/data/public/HealthEngine/lib/HE_globals.php";
 	
 	class logger
 	{
 		public $msg;
-		public $log_path = "webroot/HealthEngine/log/log.txt";
+		public $log_path = "/var/data/public/HealthEngine/log/log.txt";
 		public $shout_level = 3;
 		public $log_level = 3;
 

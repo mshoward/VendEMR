@@ -1,5 +1,5 @@
 <?php
-	require_once "./webroot/HealthEngine/lib/auth/auth_includes.php";
+	require_once "/var/data/public/HealthEngine/lib/auth/auth_includes.php";
 	$llogger = & $GLOBALS["HE_LOGGER"];
 	$llogger->logme(3, "login_redirect.php hit.");
 	
@@ -44,7 +44,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-3">
-						<img src="res/red_cross.png" alt="HealthEngine Red Cross" style="width:150px; height:150px;">
+						<img src="./res/red_cross.png" alt="HealthEngine Red Cross" style="width:150px; height:150px;">
 					</div>
 					<div class="col-md-8">
 						<h1>HealthEngine</h1>
@@ -91,4 +91,3 @@ LOGIN_PAGE;
 
 echo $login_page;
 ?>
-]]>

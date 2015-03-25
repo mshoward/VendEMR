@@ -1,6 +1,6 @@
 <?php
 	echo "hi";
-	require_once "./webroot/HealthEngine/lib/HE_global_includes.php";
+	require_once "/var/data/public/HealthEngine/lib/HE_global_includes.php";
 	
 	$login_page = <<<LOGIN_PAGE
 <!DOCTYPE html>
@@ -31,7 +31,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-3">
-						<img src="res/red_cross.png" alt="HealthEngine Red Cross" style="width:150px; height:150px;">
+						<img src="./res/red_cross.png" alt="HealthEngine Red Cross" style="width:150px; height:150px;">
 					</div>
 					<div class="col-md-8">
 						<h1>HealthEngine</h1>
