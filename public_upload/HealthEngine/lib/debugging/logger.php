@@ -1,6 +1,6 @@
 <?php
 	require_once "/var/data/public/HealthEngine/lib/HE_globals.php";
-	
+	echo "hi 2";
 	class logger
 	{
 		public $msg;
