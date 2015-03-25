@@ -10,24 +10,28 @@
 
 		public function __construct()
 		{
+			echo "constructor!\n"
 			if (isset($GLOBALS["HE_LOG_LVL"], $GLOBALS["HE_LOG_LVL"], $GLOBALS["HE_LOG_PATH"]))
 			{
 				$this->log_level = $GLOBALS["HE_LOG_LVL"];
 				$this->shout_level = $GLOBALS["HE_LOG_LVL"];
 				$this->log_path = $GLOBALS["HE_LOG_PATH"];
 			}
+			echo "end constructor\n"
 		}
 
-		public function shout(&$lvl, &$str)
+		public function shout($lvl, $str)
 		{
+			echo "called shout with: " . $str . "\n";
 			if ($this->log_level >= $lvl)
 			{
 				echo $str;
 			}
 		}
 		//error supression
-		public function logme(&$lvl, &$str)
+		public function logme($lvl, $str)
 		{
+			echo "called logme with: " . $str . "\n";
 			if ($this->log_level >= $lvl)
 			{
 				$this->shout($lvl, $str);
@@ -40,4 +44,5 @@
 			}
 		}
 	}
+	echo "logger defined!\n"
 ?>
