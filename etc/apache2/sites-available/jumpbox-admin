@@ -1,0 +1,89 @@
+NameVirtualHost *:3000
+<VirtualHost *:3000>
+  SSLEngine on
+  SSLCertificateFile /etc/apache2/ssl/apache.pem
+
+  RewriteEngine on
+
+  #########################################
+  ### BEGIN JUMPBOX FUNCTIONAL REWRITES ###
+  #########################################
+  ### Custom ErrorDoc Handling ###
+  # Note other directives near "ErrorDocument" below
+  # Make sure the proxy rewrite rule doesn't nab this
+  # Except when we're in maint mode, 'cause polling this would suck
+  RewriteCond /jumpbox/application_portal/public/maint.html !-f
+  RewriteRule ^/jberrordoc.cgi$ - [L,E=ADMINIF:1]
+
+  # This one I put in for webalizer, but it's probably of general use
+  RewriteRule ^/jbimages(.*)$ /jumpbox/application_portal/public/images$1 [L]
+
+  ### Maintenance mode rewrite rule ###
+  # We want /pollmongrel to give a 200 when not in maint mode, 403 if we are
+  RewriteCond %{REQUEST_URI} ^/pollmongrel$
+  RewriteCond /jumpbox/application_portal/public/maint.html -f
+  RewriteRule ^.*$ - [L,F]
+
+  RewriteCond %{REQUEST_URI} ^/pollmongrel$
+  RewriteRule ^.*$ /jumpbox/application_portal/public/dummy.html [L]
+
+  RewriteCond /jumpbox/application_portal/public/maint.html -f
+  RewriteRule ^.*$ /jumpbox/application_portal/public/maint.html [L]  
+
+  # Making /jb/welcome.html available on :3000
+  Alias /jb/ /var/data/jbhtml/
+  #RewriteRule ^/jb/welcome.html$ http://%{SERVER_ADDR}/jb/welcome.html [P,QSA,L]
+  RewriteRule ^/jb/jbimages/(.*)$ /jumpbox/application_portal/public/images/$1 [L]
+  <Directory /jumpbox/application_portal/public/images>
+    AllowOverride None
+    Order allow,deny
+    Allow from all
+  </Directory>
+
+  RewriteRule ^/jb/stylesheets/(.*)$ /jumpbox/application_portal/public/stylesheets/$1 [L]
+  <Directory /jumpbox/application_portal/public/stylesheets>
+    AllowOverride None
+    Order allow,deny
+    Allow from all
+  </Directory>
+
+
+  ### Webalizer Rewrite Rules ###
+  # skip these rules unless webalizer-on exists
+  RewriteCond /jumpbox/var/webalizer-on -f
+  RewriteRule ^/appstats(.*)$ /var/data/webalizer/output$1 [L]
+  #######################################
+  ### END JUMPBOX FUNCTIONAL REWRITES ###
+  #######################################
+
+  ######################################
+  ###  BEGIN CUSTOM ERRORDOC CONFIG  ###
+  ######################################
+  ErrorDocument 500 /jberrordoc.cgi
+  ErrorDocument 502 /jberrordoc.cgi
+  ErrorDocument 503 /jberrordoc.cgi
+  ScriptAlias /jberrordoc.cgi  /jumpbox/etc/apache2/errordoc.cgi
+  ######################################
+  ###   END CUSTOM ERRORDOC CONFIG   ###
+  ######################################
+
+  ######################################
+  ### BEGIN RAILS ADMIN PROXY CONFIG ###
+  ######################################
+  RequestHeader set X_FORWARDED_PROTO 'https'
+
+  # Redirect all non-static requests to cluster
+  RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_URI} !^/jb/.*
+  RewriteRule ^/(.*)$ balancer://mongrel_cluster%{REQUEST_URI} [P,QSA,L]
+
+  <Proxy balancer://mongrel_cluster>
+    Order deny,allow
+    Allow from all
+    BalancerMember http://127.0.0.1:3001
+  </Proxy>
+  ######################################
+  ###  END RAILS ADMIN PROXY CONFIG  ###
+  ######################################
+ 
+</VirtualHost>

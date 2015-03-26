@@ -1,0 +1,79 @@
+<?php
+	echo "hi";
+	require_once "/var/data/public/HealthEngine/lib/HE_global_includes.php";
+	
+	$login_page = <<<LOGIN_PAGE
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<title>Login</title>
+
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div class="jumbotron">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3">
+						<img src="./res/red_cross.png" alt="HealthEngine Red Cross" style="width:150px; height:150px;">
+					</div>
+					<div class="col-md-8">
+						<h1>HealthEngine</h1>
+						<p>Easymode EMR</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container"></div>
+			<div class="row">
+			
+				<div class="col-md-6">
+					<div class="well">
+						<h1>Welcome to HealthEngine</h1>
+						<p class="lead">Please login to access the system.</p>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="well well-lg">
+						<form action="login_redirect.php" method="post">
+							<div class="form-group">
+								<div class="input-group input-group-lg">
+									<label class="input-group-addon"  id="sizing-addon1" for="login_username">Username</label>
+									<input id="login_username" type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
+								</div>
+								<br>
+								<div class="input-group input-group-lg">
+									<label id="sizing-addon2" class="input-group-addon" for="login_password">Password</label>
+									<input id="login_password" type="password" class="form-control" placeholder="Username" aria-describedby="sizing-addon2">
+								</div>
+							</div>
+							<button type="submit" class="btn btn-default">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</body>
+</html>
+LOGIN_PAGE;
+
+echo $login_page;
+//phpinfo();
+?>

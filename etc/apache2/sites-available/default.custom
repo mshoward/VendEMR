@@ -1,0 +1,8 @@
+NameVirtualHost *:80
+<VirtualHost *:80>
+    Include /jumpbox/etc/apache2/jumpbox-common
+    RewriteEngine on
+    RewriteCond %{REMOTE_HOST} !^127\.0\.0\.1.*
+    RewriteRule ^.*$ /var/data/jbhtml/ssl-custom.html [L]  
+    Include /jumpbox/etc/apache2/jumpbox-app
+</VirtualHost>
